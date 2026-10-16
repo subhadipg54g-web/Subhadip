@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "id": "afkprogression",
+  "version": "${version}",
+  "name": "AFK Progression",
+  "description": "A client-side autonomous survival-progression assistant for content creators. Press Down Arrow and your character gathers wood and stone, crafts, smelts, eats, fights and equips itself through the iron and diamond ages, with a configurable HUD and cinematic milestone banners. For single-player, LAN and private test worlds.",
+  "authors": [
+    "AFK Progression contributors"
+  ],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/afkprogression/icon.png",
+  "environment": "client",
+  "entrypoints": {
+    "main": [
+      "com.example.afkprogression.AFKProgression"
+    ],
+    "client": [
+      "com.example.afkprogression.client.AFKProgressionClient"
+    ],
+    "afkprogression": []
+  },
+  "depends": {
+    "fabricloader": ">=0.18.1",
+    "minecraft": "~1.21.11",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}

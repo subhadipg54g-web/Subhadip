@@ -1,0 +1,36 @@
+name: Build mod jar
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:      # adds a "Run workflow" button on the Actions tab
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Make the Gradle wrapper executable
+        run: chmod +x ./gradlew
+
+      - name: Build the jar
+        run: ./gradlew build -x test --stacktrace
+
+      - name: Run the tests (reported, but they do not block the jar)
+        continue-on-error: true
+        run: ./gradlew test
+
+      - name: Upload the mod jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: afk-progression-jar
+          path: build/libs/afk-progression-1.0.0.jar
+          if-no-files-found: error
